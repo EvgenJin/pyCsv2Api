@@ -19,7 +19,7 @@ def my_function(querry, typ, sid):
             'Authorization':key,
             'Content-Encoding': 'UTF-8'
             }
-    data = {'query':querry}
+    data = {'query':querry , 'locations': [{'kladr_id': '66'},  {'kladr_id': '72'}, {'kladr_id': '74'}, {'kladr_id': '45'}]}
     print(querry)
     answer = requests.post(url, data=json.dumps(data), headers=headers)
     response = answer.json()
@@ -57,10 +57,10 @@ def my_function(querry, typ, sid):
 
         s = val['data']['address']['value']
         # if s.lower().find("свердлов") > 0 or s.lower().find("челяб") > 0 or s.lower().find("тюмен") > 0 or s.lower().find("курган") > 0:
-        # беру только нужные регионы - ищу вхождение 
-        regions_list = ['66', '72', '74', '45']
-        if inn[:2] in regions_list:
-          file.write(string)
+        # беру только нужные регионы - ищу вхождение ( поменял на фильтр в запросе)
+        # regions_list = ['66', '72', '74', '45']
+        # if inn[:2] in regions_list:
+        file.write(string)
       except: continue
 
 # читаем файл - забираем значения в словарь
